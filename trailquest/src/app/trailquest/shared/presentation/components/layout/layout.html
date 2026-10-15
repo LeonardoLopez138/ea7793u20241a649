@@ -1,18 +1,20 @@
 <mat-toolbar>
-  <button mat-icon-button (click)="toggleMenu()" aria-label="Toggle navigation" [attr.aria-expanded]="opened()">
+  <button mat-icon-button (click)="toggleMenu()" [attr.aria-label]="'toggle-navigation' | translate" [attr.aria-expanded]="opened()">
     <mat-icon>menu</mat-icon>
   </button>
-  <img class="logo" src="assets/trailquest-logo.svg" alt="TrailQuest Adventure Camps logo" width="40" height="40">
-  <span class="title">TrailQuest Adventure Camp Management Platform</span>
+  <img class="logo" src="assets/trailquest-logo.svg" [alt]="'logo-alt' | translate" width="40" height="40">
+  <span class="title">{{ 'app-title' | translate }}</span>
+  <span class="spacer"></span>
+  <app-language-switcher/>
 </mat-toolbar>
 
 <mat-sidenav-container class="layout-container">
-  <mat-sidenav [mode]="isHandset() ? 'over' : 'side'" [opened]="opened()" (closedStart)="opened.set(false)" role="navigation" aria-label="Main navigation">
+  <mat-sidenav [mode]="isHandset() ? 'over' : 'side'" [opened]="opened()" (closedStart)="opened.set(false)" role="navigation" [attr.aria-label]="'main-navigation' | translate">
     <mat-nav-list>
       @for (option of options; track option.link) {
         <a mat-list-item [routerLink]="option.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <mat-icon matListItemIcon>{{ option.icon }}</mat-icon>
-          <span matListItemTitle>{{ option.label }}</span>
+          <span matListItemTitle>{{ option.label | translate }}</span>
         </a>
       }
     </mat-nav-list>

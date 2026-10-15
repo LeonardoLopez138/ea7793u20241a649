@@ -5,6 +5,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import {TranslatePipe} from '@ngx-translate/core';
 import {AdventureCampsStore} from '../../../application/adventure-camps.store';
 import {WeatherStore} from '../../../../weather/application/weather.store';
 import {ACTIVITY_TYPES, ActivityType} from '../../../domain/model/activity-type';
@@ -30,7 +31,8 @@ const notBlank = (control: AbstractControl): ValidationErrors | null =>
     MatFormFieldModule,
     MatInput,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslatePipe
   ],
   templateUrl: './reservation-form.html',
   styleUrl: './reservation-form.css'
@@ -45,16 +47,6 @@ export class ReservationForm {
    * Activity types offered by the selector.
    */
   activityTypes = ACTIVITY_TYPES;
-
-  /**
-   * Display labels for the activity types.
-   */
-  readonly activityLabels: Record<ActivityType, string> = {
-    hiking: 'Hiking',
-    trekking: 'Trekking',
-    camping: 'Camping',
-    climbing: 'Climbing'
-  };
 
   /**
    * Form-group for the reservation form.
@@ -104,14 +96,12 @@ export class ReservationForm {
   readonly saving = this.store.loading;
 
   /**
-   * Message of the reservation error, or null when there is none.
+   * Translation key of the reservation error, or null when there is none.
    */
-  readonly reservationError = computed(() => {
+  readonly reservationErrorKey = computed(() => {
     const error = this.store.error();
     if (!error) return null;
-    return error.toLowerCase().includes('capacity')
-      ? 'The number of participants exceeds the available capacity.'
-      : 'The reservation could not be created. Please try again.';
+    return error.toLowerCase().includes('capacity') ? 'error-capacity-exceeded' : 'error-create-reservation';
   });
 
   /**

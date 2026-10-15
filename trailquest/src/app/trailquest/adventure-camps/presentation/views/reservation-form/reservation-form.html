@@ -1,60 +1,60 @@
 <section>
-  <h1>New Reservation</h1>
-  <h2>Register Participants at Your Adventure Camp</h2>
+  <h1>{{ 'new-reservation-title' | translate }}</h1>
+  <h2>{{ 'new-reservation-subtitle' | translate }}</h2>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
     <mat-form-field>
-      <mat-label>Activity Type</mat-label>
+      <mat-label>{{ 'activity-type' | translate }}</mat-label>
       <mat-select formControlName="activityType" required>
         @for (activityType of activityTypes; track activityType) {
-          <mat-option [value]="activityType">{{ activityLabels[activityType] }}</mat-option>
+          <mat-option [value]="activityType">{{ 'activity-' + activityType | translate }}</mat-option>
         }
       </mat-select>
       @if (form.controls.activityType.hasError('required')) {
-        <mat-error>Activity type is required</mat-error>
+        <mat-error>{{ 'activity-type-required' | translate }}</mat-error>
       }
     </mat-form-field>
 
     @if (adventureCamp(); as camp) {
-      <p>Adventure Camp: {{ camp.name }}</p>
-      <p>Available Capacity: {{ availableCapacity() }}</p>
+      <p>{{ 'adventure-camp' | translate }}: {{ camp.name }}</p>
+      <p>{{ 'available-capacity' | translate }}: {{ availableCapacity() }}</p>
     }
 
     @if (weatherLoading()) {
-      <p role="status">Loading temperature...</p>
+      <p role="status">{{ 'loading-temperature' | translate }}</p>
     } @else if (temperature() !== null) {
-      <p role="status">Current temperature: {{ temperature() }} °C</p>
+      <p role="status">{{ 'current-temperature' | translate }}: {{ temperature() }} °C</p>
     } @else if (weatherError()) {
-      <p role="alert">The current temperature could not be retrieved. The reservation cannot be created until it is available.</p>
+      <p role="alert">{{ 'weather-error' | translate }}</p>
     }
 
     <mat-form-field>
-      <mat-label>Participant Name</mat-label>
+      <mat-label>{{ 'participant-name' | translate }}</mat-label>
       <input matInput formControlName="participantName" required>
       @if (form.controls.participantName.hasError('required') || form.controls.participantName.hasError('blank')) {
-        <mat-error>Participant name is required</mat-error>
+        <mat-error>{{ 'participant-name-required' | translate }}</mat-error>
       }
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Number of Participants</mat-label>
+      <mat-label>{{ 'number-of-participants' | translate }}</mat-label>
       <input matInput type="number" formControlName="participants" required min="1">
       @if (form.controls.participants.hasError('required')) {
-        <mat-error>Number of participants is required</mat-error>
+        <mat-error>{{ 'participants-required' | translate }}</mat-error>
       } @else if (form.controls.participants.hasError('min')) {
-        <mat-error>At least one participant is required</mat-error>
+        <mat-error>{{ 'participants-min' | translate }}</mat-error>
       } @else if (form.controls.participants.hasError('max')) {
-        <mat-error>Participants cannot exceed the available capacity</mat-error>
+        <mat-error>{{ 'participants-max' | translate }}</mat-error>
       }
     </mat-form-field>
 
-    @if (reservationError(); as errorMessage) {
-      <p role="alert">{{ errorMessage }}</p>
+    @if (reservationErrorKey(); as errorKey) {
+      <p role="alert">{{ errorKey | translate }}</p>
     }
 
     <div class="actions">
-      <button mat-flat-button type="submit" [disabled]="form.invalid || temperature() === null || saving()">Create</button>
-      <button mat-button type="button" (click)="cancel()">Cancel</button>
+      <button mat-flat-button type="submit" [disabled]="form.invalid || temperature() === null || saving()">{{ 'create' | translate }}</button>
+      <button mat-button type="button" (click)="cancel()">{{ 'cancel' | translate }}</button>
     </div>
   </form>
 </section>

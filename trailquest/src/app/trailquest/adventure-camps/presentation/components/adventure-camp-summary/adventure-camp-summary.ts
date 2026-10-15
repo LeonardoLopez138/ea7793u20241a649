@@ -1,6 +1,7 @@
 import {Component, computed, inject, input} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
+import {TranslatePipe} from '@ngx-translate/core';
 import {AdventureCamp} from '../../../domain/model/adventure-camp.entity';
 import {AdventureCampsStore} from '../../../application/adventure-camps.store';
 
@@ -10,7 +11,7 @@ import {AdventureCampsStore} from '../../../application/adventure-camps.store';
  */
 @Component({
   selector: 'app-adventure-camp-summary',
-  imports: [MatCardModule, MatListModule],
+  imports: [MatCardModule, MatListModule, TranslatePipe],
   templateUrl: './adventure-camp-summary.html',
   styleUrl: './adventure-camp-summary.css'
 })

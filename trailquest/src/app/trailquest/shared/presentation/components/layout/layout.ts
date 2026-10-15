@@ -7,7 +7,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
+import {TranslatePipe} from '@ngx-translate/core';
 import {map} from 'rxjs';
+import {LanguageSwitcher} from '../language-switcher/language-switcher';
 
 /**
  * Application shell with toolbar, language switcher and navigation sidenav.
@@ -18,7 +20,8 @@ import {map} from 'rxjs';
   selector: 'app-layout',
   imports: [
     RouterOutlet, RouterLink, RouterLinkActive,
-    MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule, MatListModule
+    MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule, MatListModule,
+    TranslatePipe, LanguageSwitcher
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.css'
@@ -43,8 +46,8 @@ export class Layout {
    * Navigation options displayed in the sidenav.
    */
   readonly options = [
-    {link: '/home', label: 'Home', icon: 'home'},
-    {link: '/reservations/new', label: 'New Reservation', icon: 'add_circle'}
+    {link: '/home', label: 'nav-home', icon: 'home'},
+    {link: '/reservations/new', label: 'nav-new-reservation', icon: 'add_circle'}
   ];
 
   /**

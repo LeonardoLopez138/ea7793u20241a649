@@ -4,20 +4,20 @@
   </mat-card-header>
   <mat-card-content>
     @if (reservations().length === 0) {
-      <p>Empty</p>
+      <p>{{ 'empty' | translate }}</p>
     } @else {
       <mat-list>
         @for (reservation of reservations(); track reservation.id) {
           <mat-list-item>
             <span matListItemTitle>{{ reservation.participantName }}</span>
-            <span matListItemLine>Participants: {{ reservation.participants }}</span>
+            <span matListItemLine>{{ 'participants' | translate }}: {{ reservation.participants }}</span>
           </mat-list-item>
         }
       </mat-list>
     }
   </mat-card-content>
   <mat-card-footer>
-    <p>Total Participants: {{ totalParticipants() }}</p>
-    <p>Available Capacity: {{ availableCapacity() }}</p>
+    <p>{{ 'total-participants' | translate }}: {{ totalParticipants() }}</p>
+    <p>{{ 'available-capacity' | translate }}: {{ availableCapacity() }}</p>
   </mat-card-footer>
 </mat-card>

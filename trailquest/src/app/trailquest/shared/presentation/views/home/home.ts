@@ -2,6 +2,7 @@ import {Component, computed, inject} from '@angular/core';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {TranslatePipe} from '@ngx-translate/core';
 import {map} from 'rxjs';
 import {AdventureCampsStore} from '../../../../adventure-camps/application/adventure-camps.store';
 import {AdventureCampSummary} from '../../../../adventure-camps/presentation/components/adventure-camp-summary/adventure-camp-summary';
@@ -13,7 +14,7 @@ import {AdventureCampSummary} from '../../../../adventure-camps/presentation/com
  */
 @Component({
   selector: 'app-home',
-  imports: [MatGridListModule, AdventureCampSummary],
+  imports: [MatGridListModule, TranslatePipe, AdventureCampSummary],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

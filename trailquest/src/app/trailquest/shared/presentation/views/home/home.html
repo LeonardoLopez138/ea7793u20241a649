@@ -1,10 +1,10 @@
 <section>
-  <h1>Home</h1>
-  <p>Smart Reservations and Capacity Management for Adventure Camps.</p>
+  <h1>{{ 'home-title' | translate }}</h1>
+  <p>{{ 'home-subtitle' | translate }}</p>
 
-  <h2>My Adventure Camps</h2>
+  <h2>{{ 'my-adventure-camps' | translate }}</h2>
   @if (error()) {
-    <p role="alert">The adventure camps data could not be loaded.</p>
+    <p role="alert">{{ 'error-load-data' | translate }}</p>
   }
   <mat-grid-list [cols]="columns()" rowHeight="360px" gutterSize="16px">
     @for (adventureCamp of adventureCamps(); track adventureCamp.id) {
