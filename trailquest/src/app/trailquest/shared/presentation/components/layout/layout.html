@@ -1,30 +1,26 @@
-<mat-sidenav-container class="layout-container" autosize>
-  <mat-sidenav mode="side" opened [class.collapsed]="collapsed()" class="sidenav">
-    <div class="brand">
-      <button mat-icon-button (click)="toggleMenu()" aria-label="Toggle navigation">
-        <mat-icon>menu</mat-icon>
-      </button>
-      @if (!collapsed()) {
-        <span>Learning Center</span>
-      }
-    </div>
+<mat-toolbar>
+  <button mat-icon-button (click)="toggleMenu()" aria-label="Toggle navigation" [attr.aria-expanded]="opened()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img class="logo" src="assets/trailquest-logo.svg" alt="TrailQuest Adventure Camps logo" width="40" height="40">
+  <span class="title">TrailQuest Adventure Camp Management Platform</span>
+</mat-toolbar>
 
+<mat-sidenav-container class="layout-container">
+  <mat-sidenav [mode]="isHandset() ? 'over' : 'side'" [opened]="opened()" (closedStart)="opened.set(false)" role="navigation" aria-label="Main navigation">
     <mat-nav-list>
       @for (option of options; track option.link) {
         <a mat-list-item [routerLink]="option.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <mat-icon matListItemIcon>{{ option.icon }}</mat-icon>
-          @if (!collapsed()) {
-            <span matListItemTitle>{{ option.label }}</span>
-          }
+          <span matListItemTitle>{{ option.label }}</span>
         </a>
       }
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content class="content-shell">
+  <mat-sidenav-content>
     <main class="page-content">
       <router-outlet/>
     </main>
-    <app-footer-content/>
   </mat-sidenav-content>
 </mat-sidenav-container>
