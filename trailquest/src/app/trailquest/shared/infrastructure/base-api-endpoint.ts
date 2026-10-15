@@ -12,6 +12,8 @@ import {BaseAssembler} from './base-assembler';
  * @typeParam TResource - Resource representation exchanged with the API.
  * @typeParam TResponse - Response envelope returned for collection queries.
  * @typeParam TAssembler - Mapper that translates between entities and resources.
+ *
+ * @author Leonardo Lopez Torres
  */
 export abstract class BaseApiEndpoint<
   TEntity extends BaseEntity,
@@ -32,7 +34,6 @@ export abstract class BaseApiEndpoint<
   getAll(): Observable<TEntity[]> {
     return this.http.get<TResponse | TResource[]>(this.endpointUrl).pipe(
       map(response => {
-        console.log(response);
         if (Array.isArray(response)) {
           return response.map(resource => this.assembler.toEntityFromResource(resource));
         }
