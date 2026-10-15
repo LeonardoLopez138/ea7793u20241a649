@@ -1,9 +1,14 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, signal} from '@angular/core';
+import {Layout} from './trailquest/shared/presentation/components/layout/layout';
 
+/**
+ * Root component of the TrailQuest Adventure Camps application.
+ *
+ * @author Leonardo Lopez Torres
+ */
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Layout],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
