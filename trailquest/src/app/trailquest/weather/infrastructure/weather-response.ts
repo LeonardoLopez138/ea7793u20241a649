@@ -32,6 +32,7 @@ export interface WeatherResponse extends BaseResponse {
   latitude: number;
 
   /**
+   * origin
    * Longitude of the resolved grid cell.
    */
   longitude: number;
