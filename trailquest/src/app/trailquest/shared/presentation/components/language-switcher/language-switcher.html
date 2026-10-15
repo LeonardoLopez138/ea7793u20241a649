@@ -1,0 +1,5 @@
+<mat-button-toggle-group [value]="currentLanguage() ?? 'en'" (change)="changeLanguage($event)" [attr.aria-label]="'language' | translate">
+  @for (language of languages; track language.code) {
+    <mat-button-toggle [value]="language.code">{{ language.label }}</mat-button-toggle>
+  }
+</mat-button-toggle-group>
