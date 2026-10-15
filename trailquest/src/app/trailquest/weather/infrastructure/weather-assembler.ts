@@ -1,3 +1,4 @@
+import {Service} from '@angular/core';
 import {CurrentWeather} from '../domain/model/current-weather.entity';
 import {WeatherResponse} from './weather-response';
 
@@ -10,6 +11,7 @@ import {WeatherResponse} from './weather-response';
  *
  * @author Leonardo Lopez Torres
  */
+@Service()
 export class WeatherAssembler {
   /**
    * Converts a WeatherResponse to a CurrentWeather entity.
