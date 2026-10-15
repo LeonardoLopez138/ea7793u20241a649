@@ -3,7 +3,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatButton} from '@angular/material/button';
 
 /**
- * Displays fallback content for unknown routes.
+ * Displays fallback content for unsupported routes.
+ *
+ * @author Leonardo Lopez Torres
  */
 @Component({
   selector: 'app-page-not-found',
@@ -15,23 +17,23 @@ export class PageNotFound implements OnInit {
   /**
    * The invalid path that led to this page.
    */
-  protected invalidPath  = '';
+  protected invalidPath = '';
 
   /**
    * Activated route instance.
    */
-  private route: ActivatedRoute   = inject(ActivatedRoute);
+  private route: ActivatedRoute = inject(ActivatedRoute);
 
   /**
    * Router instance.
    */
-  private router: Router          = inject(Router);
+  private router: Router = inject(Router);
 
   /**
    * Initializes the component and sets the invalid path from the route.
    */
   ngOnInit() {
-    this.invalidPath = this.route.snapshot.url.map(url => url.path).join('/');
+    this.invalidPath = '/' + this.route.snapshot.url.map(url => url.path).join('/');
   }
 
   /**
@@ -40,5 +42,4 @@ export class PageNotFound implements OnInit {
   protected navigateToHome() {
     this.router.navigate(['home']).then();
   }
-
 }

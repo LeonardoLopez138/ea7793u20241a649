@@ -1,1 +1,16 @@
-<section><h1>ACME Learning Center</h1><p>Welcome to the learning center.</p></section>
+<section>
+  <h1>Home</h1>
+  <p>Smart Reservations and Capacity Management for Adventure Camps.</p>
+
+  <h2>My Adventure Camps</h2>
+  @if (error()) {
+    <p role="alert">The adventure camps data could not be loaded.</p>
+  }
+  <mat-grid-list [cols]="columns()" rowHeight="360px" gutterSize="16px">
+    @for (adventureCamp of adventureCamps(); track adventureCamp.id) {
+      <mat-grid-tile>
+        <app-adventure-camp-summary [adventureCamp]="adventureCamp"/>
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
+</section>
